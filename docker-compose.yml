@@ -1,0 +1,36 @@
+version: "3.5"
+services:
+  beacon-chain:
+    build:
+      context: ./beacon-chain
+      args:
+        BEACON_API_PORT: 3500
+        UPSTREAM_VERSION: 22.7.0
+    environment:
+      BEACON_API_PORT: 3500
+      HTTP_ENGINE: "http://chiado-nethermind.dappnode:8551"
+      P2P_PORT: 19055
+      CHECKPOINT_SYNC_URL: ""
+      EXTRA_OPTS: ""
+    volumes:
+      - "teku-chiado-data:/opt/teku/data"
+    ports:
+      - "19055:19055/tcp"
+      - "19055:19055/udp"
+    restart: unless-stopped
+    image: "beacon-chain.teku-chiado.dnp.dappnode.eth:0.1.0"
+  validator:
+    build:
+      context: ./validator
+      args:
+        UPSTREAM_VERSION: 22.7.0
+    environment:
+      LOG_TYPE: INFO
+      BEACON_NODE_ADDR: "http://beacon-chain.teku-chiado.dappnode:3500"
+      GRAFFITI: validating_from_DAppNode
+      EXTRA_OPTS: ""
+      FEE_RECIPIENT_ADDRESS: ""
+    restart: unless-stopped
+    image: "validator.teku-chiado.dnp.dappnode.eth:0.1.0"
+volumes:
+  teku-chiado-data: {}
