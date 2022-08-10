@@ -10,7 +10,6 @@ services:
       BEACON_API_PORT: 3500
       HTTP_ENGINE: "http://chiado-nethermind.dappnode:8551"
       P2P_PORT: 19055
-      CHECKPOINT_SYNC_URL: ""
       EXTRA_OPTS: ""
     volumes:
       - "teku-chiado-data:/opt/teku/data"
