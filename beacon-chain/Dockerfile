@@ -6,7 +6,7 @@ RUN  apt-get update \
     && apt-get install -y wget \
     && rm -rf /var/lib/apt/lists/* \
     && wget -q https://raw.githubusercontent.com/gnosischain/configs/main/chiado/config.yaml -O  /usr/config.yaml && \
-    wget -q https://github.com/gnosischain/configs/blob/main/chiado/genesis.ssz?raw=true -O /usr/genesis.ssz && \
+    wget -q https://github.com/gnosischain/configs/blob/main/chiado/genesis.ssz?raw=true -O /usr/genesis.ssz
     
 
 ########
